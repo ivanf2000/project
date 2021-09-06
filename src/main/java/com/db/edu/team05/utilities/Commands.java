@@ -8,14 +8,14 @@ public class Commands {
 
     public static final String HISTORY = "hist";
 
-    public static final String CHILD = "chid";
+    public static final String CHID = "chid";
 
     private static Collection<String> commands = new ArrayList<>();
 
     static {
         commands.add(SEND);
         commands.add(HISTORY);
-        commands.add(CHILD);
+        commands.add(CHID);
 
     }
 

@@ -11,6 +11,8 @@ public class ClientMessageSender {
         Connector connector = null;
         try {
             connector = new Connector("localhost", 10_000);
+            connector.getOutput().write("w");
+            connector.getOutput().flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -19,6 +21,7 @@ public class ClientMessageSender {
             String inputString  = new Scanner(System.in).nextLine();
             if (CorrectnessChecker.checkIfMessageCorrect(inputString)){
                 connector.getOutput().write(inputString);
+                connector.getOutput().flush();
 //                System.out.println("Check passed");
             }
             else System.out.println("Incorrect message! Try again:(");
