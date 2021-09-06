@@ -6,7 +6,7 @@ public class Message {
     private String body;
 
     public Message(String message) {
-        commandType = message.substring(1, message.indexOf(' '));
-        body = message. substring(message.indexOf(' ') + 1);
+        this.commandType = message.substring(1, message.indexOf(' '));
+        this.body = message. substring(message.indexOf(' ') + 1);
     }
 }
