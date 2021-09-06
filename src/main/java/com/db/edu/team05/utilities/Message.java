@@ -4,6 +4,7 @@ package com.db.edu.team05.utilities;
 public class Message {
     private String commandType;
     private String body;
+    private boolean correctness;
 
     public Message(String message) {
         this.commandType = message.substring(1, message.indexOf(' '));
