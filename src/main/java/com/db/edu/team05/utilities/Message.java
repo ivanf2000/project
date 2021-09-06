@@ -7,7 +7,6 @@ public class Message {
 
     public Message(String message) {
         commandType = message.substring(1, message.indexOf(' '));
-
         body = message. substring(message.indexOf(' ') + 1);
     }
 }
