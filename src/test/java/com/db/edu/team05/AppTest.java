@@ -2,11 +2,11 @@ package com.db.edu.team05;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
     @Test
-    public void dummyTest(){
+    public void dummyTest() {
         final boolean TRUE_VALUE = true;
         assertTrue(TRUE_VALUE);
     }

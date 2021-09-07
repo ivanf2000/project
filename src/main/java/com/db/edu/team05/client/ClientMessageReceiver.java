@@ -1,7 +1,5 @@
 package com.db.edu.team05.client;
 
-import com.db.edu.team05.client.Connector;
-
 import java.io.IOException;
 
 public class ClientMessageReceiver {
@@ -14,13 +12,13 @@ public class ClientMessageReceiver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (true){
+        while (true) {
             Thread.sleep(3000);
-            if(connector.getInput().ready()) {
+            if (connector.getInput().ready()) {
                 char[] buf = new char[150];
                 connector.getInput().read(buf);
                 String message = String.valueOf(buf);
-                message = message.substring(0,message.indexOf('\0'));
+                message = message.substring(0, message.indexOf('\0'));
                 System.out.println(message);
             }
         }

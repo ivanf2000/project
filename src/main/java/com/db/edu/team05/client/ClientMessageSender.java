@@ -16,13 +16,12 @@ public class ClientMessageSender {
             e.printStackTrace();
         }
 
-        while (true){
-            String inputString  = new Scanner(System.in).nextLine();
-            if (CorrectnessChecker.checkIfMessageCorrect(inputString)){
+        while (true) {
+            String inputString = new Scanner(System.in).nextLine();
+            if (CorrectnessChecker.checkIfMessageCorrect(inputString)) {
                 connector.getOutput().write(inputString);
                 connector.getOutput().flush();
-            }
-            else System.out.println("Incorrect message! Try again:(");
+            } else System.out.println("Incorrect message! Try again:(");
 
         }
 

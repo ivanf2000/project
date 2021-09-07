@@ -2,22 +2,14 @@ package com.db.edu.team05.utilities;
 
 
 public enum CommandTypes {
-    SEND ("/snd"),
-    HISTORY ("/hist"),
-    CHID ("/chid");
+    SEND("/snd"),
+    HISTORY("/hist"),
+    CHID("/chid");
 
     private final String name;
 
     private CommandTypes(String s) {
         name = s;
-    }
-
-    public boolean equalsName(String otherName) {
-        return name.equals(otherName);
-    }
-
-    public String toString() {
-        return this.name;
     }
 
     public static boolean isCommand(String command) {
@@ -33,6 +25,14 @@ public enum CommandTypes {
         if (HISTORY.equalsName(cmd)) return HISTORY;
         if (CHID.equalsName(cmd)) return CHID;
         return null;
+    }
+
+    public boolean equalsName(String otherName) {
+        return name.equals(otherName);
+    }
+
+    public String toString() {
+        return this.name;
     }
 
 }

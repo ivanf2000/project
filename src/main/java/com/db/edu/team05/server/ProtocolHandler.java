@@ -8,6 +8,7 @@ import java.util.Collection;
 public class ProtocolHandler {
     Collection<Session> sessions;
     MessageDecorator decorator = new MessageDecorator();
+
     public ProtocolHandler(Collection<Session> sessions) {
         this.sessions = sessions;
     }

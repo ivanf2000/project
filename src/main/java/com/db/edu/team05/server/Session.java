@@ -2,7 +2,6 @@ package com.db.edu.team05.server;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class Session {
@@ -14,17 +13,18 @@ public class Session {
     public Session(Socket connection) throws IOException {
         this.connection = connection;
     }
-    public void initSession() throws IOException{
+
+    public void initSession() throws IOException {
         this.input = new BufferedReader(
                 new InputStreamReader(
                         new BufferedInputStream(
                                 connection.getInputStream()),
-                        StandardCharsets.UTF_8),150);
+                        StandardCharsets.UTF_8), 150);
         this.output = new BufferedWriter(
                 new OutputStreamWriter(
                         new BufferedOutputStream(
                                 connection.getOutputStream()),
-                        StandardCharsets.UTF_8),150);
+                        StandardCharsets.UTF_8), 150);
         handShake();
 
     }
@@ -37,7 +37,7 @@ public class Session {
         return output;
     }
 
-    public boolean isWriter(){
+    public boolean isWriter() {
         return isWriter;
     }
 
@@ -50,16 +50,16 @@ public class Session {
     private void handShake() throws IOException {
         char[] buf = new char[1];
         int code = input.read(buf);
-        if(code == -1) throw(new IOException());
-        switch(buf[0]) {
-            case 'w' :
+        if (code == -1) throw (new IOException());
+        switch (buf[0]) {
+            case 'w':
                 isWriter = true;
                 break;
-            case 'r' :
+            case 'r':
                 isWriter = false;
                 break;
             default:
-                throw(new IllegalArgumentException());
+                throw (new IllegalArgumentException());
         }
     }
 }
