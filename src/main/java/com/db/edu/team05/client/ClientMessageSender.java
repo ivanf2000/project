@@ -10,7 +10,7 @@ public class ClientMessageSender {
     public static void main(String[] args) throws IOException {
         Connector connector = null;
         try {
-            connector = new Connector("localhost", 10_000);
+            connector = new Connector("localhost", 10000);
             connector.getOutput().write("w");
             connector.getOutput().flush();
         } catch (IOException e) {

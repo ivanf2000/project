@@ -21,7 +21,7 @@ public class Server {
 
     public static void main(String... args) {
 
-            int port = 10_000;//Integer.parseInt(args[0]);
+            int port = 10000;//Integer.parseInt(args[0]);
             ServerSocket listener = null;
             ExecutorService pool = Executors.newFixedThreadPool(10);
             Collection<Session> sessions = new ArrayList<Session>();
@@ -42,8 +42,10 @@ public class Server {
                         try {
                             session.initSession();
                             if (session.isWriter()) {
-                                String message = session.getMessage();
-                                protocolHandler.process(message);
+                                while (true) {
+                                    String message = session.getMessage();
+                                    protocolHandler.process(message);
+                                }
                             } else {
 
                             }

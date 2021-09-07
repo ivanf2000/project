@@ -16,7 +16,6 @@ public class ProtocolHandler {
     }
 
     public void process(String message) throws IOException {
-        System.out.println(message);
         Command command = new Command(message);
         switch (command.getCmd()) {
             case SEND:

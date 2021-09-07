@@ -8,7 +8,7 @@ public class ClientMessageReceiver {
     public static void main(String[] args) throws IOException, InterruptedException {
         Connector connector = null;
         try {
-            connector = new Connector("localhost", 10_000);
+            connector = new Connector("localhost", 10000);
             connector.getOutput().write("r");
             connector.getOutput().flush();
         } catch (IOException e) {
@@ -20,8 +20,6 @@ public class ClientMessageReceiver {
                 char[] buf = new char[150];
                 connector.getInput().read(buf);
                 System.out.println(String.valueOf(buf));
-            } else {
-                System.out.println("No message received yet.");
             }
         }
     }

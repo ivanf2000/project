@@ -44,7 +44,6 @@ public class Session {
     public String getMessage() throws IOException {
         char[] buf = new char[150];
         input.read(buf);
-        System.out.println(buf);
         return String.valueOf(buf);
     }
 
