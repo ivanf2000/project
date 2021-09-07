@@ -1,0 +1,1 @@
+java -jar C:\Users\MI\Documents\DB\Java\team05_modules\client-receiver\target\client-receiver-1.0-SNAPSHOT.jar
