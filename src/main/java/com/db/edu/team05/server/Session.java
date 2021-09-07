@@ -2,24 +2,39 @@ package com.db.edu.team05.server;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Session {
     Socket connection;
-    final BufferedReader input;
-    final BufferedWriter output;
+    BufferedReader input;
+    BufferedWriter output;
     boolean isWriter;
 
     public Session(Socket connection) throws IOException {
         this.connection = connection;
-         this.input = new BufferedReader(
+    }
+    public void initSession() throws IOException{
+        this.input = new BufferedReader(
                 new InputStreamReader(
                         new BufferedInputStream(
-                                connection.getInputStream())));
+                                connection.getInputStream()),
+                        StandardCharsets.UTF_8),150);
         this.output = new BufferedWriter(
                 new OutputStreamWriter(
                         new BufferedOutputStream(
-                                connection.getOutputStream())));
+                                connection.getOutputStream()),
+                        StandardCharsets.UTF_8),150);
         handShake();
+
+    }
+
+    public BufferedReader getInput() {
+        return input;
+    }
+
+    public BufferedWriter getOutput() {
+        return output;
     }
 
     public boolean isWriter(){
@@ -27,7 +42,10 @@ public class Session {
     }
 
     public String getMessage() throws IOException {
-        return input.readLine();
+        char[] buf = new char[150];
+        input.read(buf);
+        System.out.println(buf);
+        return String.valueOf(buf);
     }
 
     private void handShake() throws IOException {

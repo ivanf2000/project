@@ -1,5 +1,7 @@
 package com.db.edu.team05.client;
 
+import com.db.edu.team05.client.Connector;
+
 import java.io.IOException;
 
 public class ClientMessageReceiver {
@@ -12,8 +14,12 @@ public class ClientMessageReceiver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (true){
-            System.out.println(connector.getInput().readLine());
-        }
+//        while (true){
+            if(connector.getInput().ready()) {
+                System.out.println(connector.getInput().readLine());
+            } else {
+                System.out.println("No message received yet.");
+            }
+//        }
     }
 }

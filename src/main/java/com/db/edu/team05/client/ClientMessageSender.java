@@ -1,7 +1,7 @@
 package com.db.edu.team05.client;
 
+import com.db.edu.team05.client.Connector;
 import com.db.edu.team05.utilities.CorrectnessChecker;
-import com.db.edu.team05.utilities.Message;
 
 import java.io.IOException;
 import java.util.Scanner;

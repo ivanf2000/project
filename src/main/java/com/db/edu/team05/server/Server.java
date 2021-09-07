@@ -3,55 +3,59 @@ package com.db.edu.team05.server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-    public class Server {
-        private final int port;
-        final ServerSocket listener;
-        ProtocolHandler protocolHandler;
+public class Server {
+//        private int port;
+//        private ServerSocket listener;
+//        ExecutorService pool = Executors.newFixedThreadPool(10);
+//        Collection<Session> sessions = new ArrayList<Session>();
+//        ProtocolHandler protocolHandler = new ProtocolHandler(sessions);
+//        public Server(int port) throws IOException {
+//            this.port = port;
+//            this.listener = new ServerSocket(port);
+//        }
 
-        public Server(int port) throws IOException {
-            this.port = port;
-            this.listener = new ServerSocket(port);
-            this.protocolHandler = new ProtocolHandler();
-        }
+    public static void main(String... args) {
 
-        public void oneServer() {
-            try (
-//                listener.setSoTimeout();
-                    final Socket connection = listener.accept();
-            ) {
+            int port = 10_000;//Integer.parseInt(args[0]);
+            ServerSocket listener = null;
+            ExecutorService pool = Executors.newFixedThreadPool(10);
+            Collection<Session> sessions = new ArrayList<Session>();
+            ProtocolHandler protocolHandler = new ProtocolHandler(sessions);
+            try {
+                listener = new ServerSocket(port);
+            } catch (IOException e) {
+                System.exit(-1);
+            }
+
+            for (int i = 0; i < 2; i++) {
+                System.out.println(i==0 ? "Wait for ClientReceiver" : "Wait for ClientSender");
+                try (final Socket connection = listener.accept()) {
                     Session session = new Session(connection);
-                    if(session.isWriter()){
-                        while(true) {
-                            String message = session.getMessage();
-                            protocolHandler.process(message);
-                        }
-                    }
-//                    if(!session.isWriter()){
-//                        while(true) {
-//
-//                        }
-//                    }
+                    sessions.add(session);
+//                    pool.execute(() -> {
+//                        try {
+                            session.initSession();
+                            if (session.isWriter()) {
+                                String message = session.getMessage();
+                                protocolHandler.process(message);
+                            } else {
 
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                            }
+
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    });
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         }
     }
-
-//            while (true) {
-//                        final String read = input.readUTF();
-//                        output.writeUTF(">>>>>>> " + read);
-//                        output.flush();
-//                    }
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace(System.err);
-//                }
-//
-//            } catch (IOException e) {
-//                e.printStackTrace(System.err);
-//            }
-//        }
-//    }
 

@@ -3,6 +3,8 @@ package com.db.edu.team05.client;
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Connector {
     private Socket connection;
@@ -14,11 +16,13 @@ public class Connector {
         this.input = new BufferedReader(
                 new InputStreamReader(
                         new BufferedInputStream(
-                                connection.getInputStream())));
+                                connection.getInputStream()),
+                        StandardCharsets.UTF_8),150);
         this.output = new BufferedWriter(
                 new OutputStreamWriter(
                         new BufferedOutputStream(
-                                connection.getOutputStream())));
+                                connection.getOutputStream()),
+                                StandardCharsets.UTF_8),150);
     }
 
     public Socket getConnection() {
