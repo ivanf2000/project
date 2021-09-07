@@ -34,11 +34,12 @@ public class Server {
 
             for (int i = 0; i < 2; i++) {
                 System.out.println(i==0 ? "Wait for ClientReceiver" : "Wait for ClientSender");
-                try (final Socket connection = listener.accept()) {
+                try {
+                    final Socket connection = listener.accept();
                     Session session = new Session(connection);
                     sessions.add(session);
-//                    pool.execute(() -> {
-//                        try {
+                    pool.execute(() -> {
+                        try {
                             session.initSession();
                             if (session.isWriter()) {
                                 String message = session.getMessage();
@@ -47,10 +48,10 @@ public class Server {
 
                             }
 
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
 
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
