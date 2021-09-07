@@ -1,6 +1,5 @@
 package com.db.edu.team05.client;
 
-import com.db.edu.team05.client.Connector;
 import com.db.edu.team05.utilities.CorrectnessChecker;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class ClientMessageSender {
             if (CorrectnessChecker.checkIfMessageCorrect(inputString)){
                 connector.getOutput().write(inputString);
                 connector.getOutput().flush();
-//                System.out.println("Check passed");
             }
             else System.out.println("Incorrect message! Try again:(");
 

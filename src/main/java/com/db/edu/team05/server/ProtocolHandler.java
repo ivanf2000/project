@@ -1,15 +1,12 @@
 package com.db.edu.team05.server;
 
-import com.db.edu.team05.utilities.Commands;
 import com.db.edu.team05.utilities.Command;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.concurrent.ExecutorService;
 
 public class ProtocolHandler {
     Collection<Session> sessions;
-//    CommandParser parser = new CommandParser();
     MessageDecorator decorator = new MessageDecorator();
     public ProtocolHandler(Collection<Session> sessions) {
         this.sessions = sessions;

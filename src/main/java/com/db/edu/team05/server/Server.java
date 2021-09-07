@@ -9,19 +9,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
-//        private int port;
-//        private ServerSocket listener;
-//        ExecutorService pool = Executors.newFixedThreadPool(10);
-//        Collection<Session> sessions = new ArrayList<Session>();
-//        ProtocolHandler protocolHandler = new ProtocolHandler(sessions);
-//        public Server(int port) throws IOException {
-//            this.port = port;
-//            this.listener = new ServerSocket(port);
-//        }
-
     public static void main(String... args) {
 
-            int port = 10000;//Integer.parseInt(args[0]);
+            int port = 10000;
             ServerSocket listener = null;
             ExecutorService pool = Executors.newFixedThreadPool(10);
             Collection<Session> sessions = new ArrayList<Session>();
