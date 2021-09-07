@@ -9,4 +9,5 @@ buildNumber.properties
 javajunior.iml
 .idea
 .DS_Store
-project.iml
+*.iml
+bat/
