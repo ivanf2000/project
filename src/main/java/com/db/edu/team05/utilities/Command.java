@@ -7,7 +7,7 @@ public class Command {
 
     public Command(String message) {
         int spacePos = message.indexOf(' ');
-        boolean isWithBody = spacePos != -1 ? true : false;
+        boolean isWithBody = spacePos != -1;
         String cmd = message.substring(0, isWithBody ? spacePos : message.length());
         this.cmd = CommandTypes.getCommandType(cmd);
         this.body = isWithBody ? message.substring(spacePos + 1) : null;
