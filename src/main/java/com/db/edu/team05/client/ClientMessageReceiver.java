@@ -19,7 +19,9 @@ public class ClientMessageReceiver {
             if(connector.getInput().ready()) {
                 char[] buf = new char[150];
                 connector.getInput().read(buf);
-                System.out.println(String.valueOf(buf));
+                String message = String.valueOf(buf);
+                message = message.substring(0,message.indexOf('\0'));
+                System.out.println(message);
             }
         }
     }
