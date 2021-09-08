@@ -6,7 +6,7 @@ public class ClientMessageReceiver {
     public static void main(String[] args) throws IOException, InterruptedException {
         Connector connector = null;
         try {
-            connector = new Connector("localhost", 10000);
+            connector = new Connector("localhost", 8000);
             connector.getOutput().write("r");
             connector.getOutput().flush();
         } catch (IOException e) {

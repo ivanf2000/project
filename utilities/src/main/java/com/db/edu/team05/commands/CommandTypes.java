@@ -1,4 +1,4 @@
-package com.db.edu.team05;
+package com.db.edu.team05.commands;
 
 
 public enum CommandTypes {
