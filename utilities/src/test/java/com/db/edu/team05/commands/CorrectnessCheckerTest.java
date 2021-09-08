@@ -1,8 +1,8 @@
-package com.db.edu.team05;
+package com.db.edu.team05.commands;
 
 import org.junit.jupiter.api.Test;
 
-import static com.db.edu.team05.CorrectnessChecker.checkIfMessageCorrect;
+import static com.db.edu.team05.commands.CorrectnessChecker.checkIfMessageCorrect;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
