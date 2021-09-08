@@ -12,7 +12,7 @@ public class ClientMessageReceiver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (true) {
+        while (!connector.getConnection().isClosed()) {
             Thread.sleep(3000);
             if (connector.getInput().ready()) {
                 char[] buf = new char[150];
@@ -22,5 +22,6 @@ public class ClientMessageReceiver {
                 System.out.println(message);
             }
         }
+        System.out.println("Server interrupt connection");
     }
 }
