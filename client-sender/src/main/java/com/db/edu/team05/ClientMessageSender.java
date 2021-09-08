@@ -9,27 +9,29 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ClientMessageSender {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Connector connector = null;
         try {
             connector = new Connector("localhost", 8000);
             connector.getOutput().write("w");
             connector.getOutput().flush();
+
+           // while (!connector.getConnection().isOutputShutdown()) {
+                while (!connector.getConnection().isClosed()) {
+                String inputString = new Scanner(System.in).nextLine();
+                if (CorrectnessChecker.checkIfMessageCorrect(inputString) &&
+                        CorrectnessChecker.checkIfMessageNotLong(inputString)) {
+                    byte[] bytes = inputString.getBytes();
+                    String inputUTF8 = new String(bytes, StandardCharsets.UTF_8);
+                    connector.getOutput().write(inputUTF8);
+                    connector.getOutput().flush();
+                } else System.out.println("Incorrect message! Try again:(");
+            }
+            System.out.println("Server interrupt connection");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        while (true) {
-            String inputString = new Scanner(System.in).nextLine();
-            if (CorrectnessChecker.checkIfMessageCorrect(inputString) &&
-            CorrectnessChecker.checkIfMessageNotLong(inputString)) {
-                byte[] bytes = inputString.getBytes();
-                String inputUTF8 = new String(bytes,StandardCharsets.UTF_8);
-                connector.getOutput().write(inputUTF8);
-                connector.getOutput().flush();
-            } else System.out.println("Incorrect message! Try again:(");
-
-        }
-
     }
+
 }
