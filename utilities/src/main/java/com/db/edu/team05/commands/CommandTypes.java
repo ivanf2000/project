@@ -8,7 +8,7 @@ public enum CommandTypes {
 
     private final String name;
 
-    private CommandTypes(String s) {
+    CommandTypes(String s) {
         name = s;
     }
 
