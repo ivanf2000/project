@@ -16,9 +16,8 @@
 
     </properties>
     <modules>
-        <module>client-connect</module>
+        <module>utilities</module>
         <module>client-receiver</module>
-        <module>command</module>
         <module>client-sender</module>
         <module>server</module>
     </modules>

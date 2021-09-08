@@ -43,7 +43,7 @@
     <dependencies>
         <dependency>
             <groupId>com.db.edu.team05</groupId>
-            <artifactId>command</artifactId>
+            <artifactId>utilities</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>

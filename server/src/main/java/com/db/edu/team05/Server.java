@@ -10,7 +10,8 @@ import java.util.concurrent.Executors;
 
 public class Server {
     public static void main(String... args) {
-        int port = 10000;
+        int port = 8000;
+
         ServerSocket listener = null;
         ExecutorService pool = Executors.newFixedThreadPool(10);
         Collection<Session> sessions = new ArrayList<Session>();
@@ -30,6 +31,7 @@ public class Server {
         try {
             listener = new ServerSocket(port);
         } catch (IOException e) {
+            System.out.println("WRONG");
             System.exit(-1);
         }
 
