@@ -5,19 +5,23 @@ package com.db.edu.team05;
 import com.db.edu.team05.commands.CorrectnessChecker;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ClientMessageSender {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Connector connector = null;
         try {
             connector = new Connector("localhost", 8000);
             connector.getOutput().write("w");
             connector.getOutput().flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-           // while (!connector.getConnection().isOutputShutdown()) {
-                while (!connector.getConnection().isClosed()) {
+        try {
+            while (!connector.getConnection().isClosed()) {
                 String inputString = new Scanner(System.in).nextLine();
                 if (CorrectnessChecker.checkIfMessageCorrect(inputString) &&
                         CorrectnessChecker.checkIfMessageNotLong(inputString)) {
@@ -26,12 +30,10 @@ public class ClientMessageSender {
                     connector.getOutput().write(inputUTF8);
                     connector.getOutput().flush();
                 } else System.out.println("Incorrect message! Try again:(");
-            }
-            System.out.println("Server interrupt connection");
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            }
+        } catch (SocketException e) {
+            System.out.println("Server interrupt connection");
         }
     }
-
 }
